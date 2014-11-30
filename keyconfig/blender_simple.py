@@ -1293,6 +1293,13 @@ kmi_props_setattr(kmi.properties, 'deselect', True)
 kmi = km.keymap_items.new('wm.call_menu', 'TAB', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'name', 'VIEW3D_MT_edit_mesh_select_mode')
 
+kmi = km.keymap_items.new('mesh.select_mode', 'ONE', 'PRESS')
+kmi_props_setattr(kmi.properties, 'type', 'VERT')
+kmi = km.keymap_items.new('mesh.select_mode', 'TWO', 'PRESS')
+kmi_props_setattr(kmi.properties, 'type', 'EDGE')
+kmi = km.keymap_items.new('mesh.select_mode', 'THREE', 'PRESS')
+kmi_props_setattr(kmi.properties, 'type', 'FACE')
+
 ## Mesh Visibility Tools
 kmi = km.keymap_items.new('mesh.hide', 'H', 'PRESS')
 kmi_props_setattr(kmi.properties, 'unselected', False)
