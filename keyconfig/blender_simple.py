@@ -1280,6 +1280,16 @@ kmi = km.keymap_items.new('mesh.select_less', 'NUMPAD_MINUS', 'PRESS', ctrl=True
 # kmi_props_setattr(kmi.properties, 'deselect', True)
 # kmi = km.keymap_items.new('mesh.faces_select_linked_flat', 'F', 'PRESS', shift=True, ctrl=True, alt=True)
 
+kmi = km.keymap_items.new('mesh.select_linked_pick', 'SELECTMOUSE', 'DOUBLE_CLICK')
+kmi_props_setattr(kmi.properties, 'limit', True)
+kmi_props_setattr(kmi.properties, 'deselect', False)
+kmi = km.keymap_items.new('mesh.select_linked_pick', 'SELECTMOUSE', 'DOUBLE_CLICK', shift=True)
+kmi_props_setattr(kmi.properties, 'limit', True)
+kmi_props_setattr(kmi.properties, 'deselect', False)
+kmi = km.keymap_items.new('mesh.select_linked_pick', 'SELECTMOUSE', 'DOUBLE_CLICK', ctrl=True)
+kmi_props_setattr(kmi.properties, 'limit', True)
+kmi_props_setattr(kmi.properties, 'deselect', True)
+
 kmi = km.keymap_items.new('wm.call_menu', 'TAB', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'name', 'VIEW3D_MT_edit_mesh_select_mode')
 
