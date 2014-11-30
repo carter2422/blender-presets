@@ -224,10 +224,6 @@ kmi = km.keymap_items.new('transform.mirror', 'M', 'PRESS', ctrl=True)
 
 
 ## Other
-kmi = km.keymap_items.new('wm.return_to_original', 'NUMPAD_SLASH', 'PRESS', shift=True)
-kmi = km.keymap_items.new('object.edit_linked', 'NUMPAD_SLASH', 'PRESS', shift=True)
-kmi = km.keymap_items.new('wm.return_to_original', 'NUMPAD_SLASH', 'PRESS', shift=True)
-kmi = km.keymap_items.new('object.edit_linked', 'NUMPAD_SLASH', 'PRESS', shift=True)
 kmi = km.keymap_items.new('view3d.manipulator', 'LEFTMOUSE', 'PRESS', any=True)
 kmi_props_setattr(kmi.properties, 'release_confirm', True)
 
