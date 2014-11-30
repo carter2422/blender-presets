@@ -147,6 +147,8 @@ kmi = km.keymap_items.new('view3d.viewnumpad', 'NUMPAD_7', 'PRESS', shift=True, 
 kmi_props_setattr(kmi.properties, 'type', 'BOTTOM')
 kmi_props_setattr(kmi.properties, 'align_active', True)
 kmi = km.keymap_items.new('view3d.localview', 'NUMPAD_SLASH', 'PRESS')
+
+### NDOF navigation
 kmi = km.keymap_items.new('view3d.ndof_orbit_zoom', 'NDOF_MOTION', 'ANY')
 kmi = km.keymap_items.new('view3d.ndof_orbit', 'NDOF_MOTION', 'ANY', ctrl=True)
 kmi = km.keymap_items.new('view3d.ndof_pan', 'NDOF_MOTION', 'ANY', shift=True)
