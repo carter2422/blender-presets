@@ -808,7 +808,6 @@ kmi_props_setattr(kmi.properties, 'use_hide_panels', True)
 
 kmi = km.keymap_items.new('screen.screenshot', 'F3', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('screen.screencast', 'F3', 'PRESS', alt=True)
-kmi = km.keymap_items.new('screen.region_quadview', 'Q', 'PRESS', ctrl=True, alt=True)
 kmi = km.keymap_items.new('screen.repeat_history', 'F3', 'PRESS')
 kmi = km.keymap_items.new('screen.repeat_last', 'R', 'PRESS', shift=True)
 kmi = km.keymap_items.new('screen.region_flip', 'F5', 'PRESS')
