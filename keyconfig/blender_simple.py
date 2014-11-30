@@ -217,9 +217,6 @@ kmi = km.keymap_items.new('transform.resize', 'D', 'PRESS')
 kmi = km.keymap_items.new('transform.bend', 'W', 'PRESS', shift=True)
 kmi = km.keymap_items.new('transform.tosphere', 'S', 'PRESS', shift=True, alt=True)
 kmi = km.keymap_items.new('transform.shear', 'S', 'PRESS', shift=True, ctrl=True, alt=True)
-kmi = km.keymap_items.new('transform.select_orientation', 'SPACE', 'PRESS', alt=True)
-kmi = km.keymap_items.new('transform.create_orientation', 'SPACE', 'PRESS', ctrl=True, alt=True)
-kmi_props_setattr(kmi.properties, 'use', True)
 kmi = km.keymap_items.new('transform.mirror', 'M', 'PRESS', ctrl=True)
 
 
