@@ -806,11 +806,8 @@ kmi = km.keymap_items.new('screen.screen_full_area', 'SPACE', 'PRESS', shift=Tru
 kmi = km.keymap_items.new('screen.screen_full_area', 'F10', 'PRESS', alt=True)
 kmi_props_setattr(kmi.properties, 'use_hide_panels', True)
 
-kmi = km.keymap_items.new('screen.screenshot', 'F3', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('screen.screencast', 'F3', 'PRESS', alt=True)
 kmi = km.keymap_items.new('screen.repeat_history', 'F3', 'PRESS')
 kmi = km.keymap_items.new('screen.repeat_last', 'R', 'PRESS', shift=True)
-kmi = km.keymap_items.new('screen.region_flip', 'F5', 'PRESS')
 kmi = km.keymap_items.new('screen.redo_last', 'F6', 'PRESS')
 kmi = km.keymap_items.new('script.reload', 'F8', 'PRESS')
 kmi = km.keymap_items.new('file.execute', 'RET', 'PRESS')
@@ -830,7 +827,6 @@ kmi_props_setattr(kmi.properties, 'use_viewport', True)
 kmi = km.keymap_items.new('render.view_cancel', 'ESC', 'PRESS')
 kmi = km.keymap_items.new('render.view_show', 'F11', 'PRESS')
 kmi = km.keymap_items.new('render.play_rendered_anim', 'F11', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('screen.userpref_show', 'COMMA', 'PRESS', oskey=True)
 kmi = km.keymap_items.new('screen.userpref_show', 'U', 'PRESS', ctrl=True, alt=True)
 
 # Map Screen Editing
