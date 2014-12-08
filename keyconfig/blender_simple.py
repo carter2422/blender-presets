@@ -180,27 +180,55 @@ kmi_props_setattr(kmi.properties, 'type', 'TOP')
 kmi_props_setattr(kmi.properties, 'align_active', True)
 
 ## Selection
-kmi = km.keymap_items.new('view3d.select', 'SELECTMOUSE', 'PRESS')
+kmi = km.keymap_items.new('view3d.select_or_deselect_all', 'SELECTMOUSE', 'PRESS')
 kmi_props_setattr(kmi.properties, 'extend', False)
 kmi_props_setattr(kmi.properties, 'deselect', False)
 kmi_props_setattr(kmi.properties, 'toggle', False)
 kmi_props_setattr(kmi.properties, 'center', False)
 kmi_props_setattr(kmi.properties, 'enumerate', False)
 kmi_props_setattr(kmi.properties, 'object', False)
-kmi = km.keymap_items.new('view3d.select', 'SELECTMOUSE', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'extend', True)
+kmi = km.keymap_items.new('view3d.select_or_deselect_all', 'SELECTMOUSE', 'PRESS', shift=True)
+kmi_props_setattr(kmi.properties, 'extend', False)
 kmi_props_setattr(kmi.properties, 'deselect', False)
-kmi_props_setattr(kmi.properties, 'toggle', False)
+kmi_props_setattr(kmi.properties, 'toggle', True)
 kmi_props_setattr(kmi.properties, 'center', False)
 kmi_props_setattr(kmi.properties, 'enumerate', False)
 kmi_props_setattr(kmi.properties, 'object', False)
-kmi = km.keymap_items.new('view3d.select', 'SELECTMOUSE', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('view3d.select_or_deselect_all', 'SELECTMOUSE', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'extend', False)
 kmi_props_setattr(kmi.properties, 'deselect', True)
 kmi_props_setattr(kmi.properties, 'toggle', False)
 kmi_props_setattr(kmi.properties, 'center', False)
 kmi_props_setattr(kmi.properties, 'enumerate', False)
-kmi_props_setattr(kmi.properties, 'object', True)
+kmi_props_setattr(kmi.properties, 'object', False)
+kmi = km.keymap_items.new('view3d.select_or_deselect_all', 'SELECTMOUSE', 'PRESS', alt=True)
+kmi_props_setattr(kmi.properties, 'extend', False)
+kmi_props_setattr(kmi.properties, 'deselect', False)
+kmi_props_setattr(kmi.properties, 'toggle', False)
+kmi_props_setattr(kmi.properties, 'center', False)
+kmi_props_setattr(kmi.properties, 'enumerate', True)
+kmi_props_setattr(kmi.properties, 'object', False)
+
+#This is border select when LMB-clicking-and-dragging
+#But it needs some modal settings to work correctly, 
+#that I think will override the setting when firing it from anywhere else
+
+# kmi = km.keymap_items.new('view3d.select_border', 'EVT_TWEAK_L', 'ANY')
+# kmi_props_setattr(kmi.properties, 'extend', False)
+
+# kmi = km.keymap_items.new('view3d.select_border', 'EVT_TWEAK_L', 'ANY', shift=True)
+# kmi = km.keymap_items.new('view3d.select_border', 'EVT_TWEAK_L', 'ANY', ctrl=True)
+# kmi_props_setattr(kmi.properties, 'extend', False)
+
+#Here are the modal settigs mentioned above:
+# km = kc.keymaps.new('Gesture Border', space_type='EMPTY', region_type='WINDOW', modal=True)
+#     addon_keymaps.append(km)
+
+#     kmi = km.keymap_items.new_modal('CANCEL', 'ESC', 'PRESS', any=True)
+#     kmi = km.keymap_items.new_modal('BEGIN', 'LEFTMOUSE', 'PRESS')
+#     kmi = km.keymap_items.new_modal('SELECT', 'LEFTMOUSE', 'RELEASE')
+#     kmi = km.keymap_items.new_modal('SELECT', 'LEFTMOUSE', 'RELEASE', shift=True)
+#     kmi = km.keymap_items.new_modal('DESELECT', 'LEFTMOUSE', 'RELEASE', ctrl=True)
 
 kmi = km.keymap_items.new('view3d.select_border', 'B', 'PRESS')
 kmi = km.keymap_items.new('view3d.select_lasso', 'EVT_TWEAK_A', 'ANY', ctrl=True)
@@ -1252,8 +1280,25 @@ kmi = km.keymap_items.new('mesh.select_less', 'NUMPAD_MINUS', 'PRESS', ctrl=True
 # kmi_props_setattr(kmi.properties, 'deselect', True)
 # kmi = km.keymap_items.new('mesh.faces_select_linked_flat', 'F', 'PRESS', shift=True, ctrl=True, alt=True)
 
+kmi = km.keymap_items.new('mesh.select_linked_pick', 'SELECTMOUSE', 'DOUBLE_CLICK')
+kmi_props_setattr(kmi.properties, 'limit', True)
+kmi_props_setattr(kmi.properties, 'deselect', False)
+kmi = km.keymap_items.new('mesh.select_linked_pick', 'SELECTMOUSE', 'DOUBLE_CLICK', shift=True)
+kmi_props_setattr(kmi.properties, 'limit', True)
+kmi_props_setattr(kmi.properties, 'deselect', False)
+kmi = km.keymap_items.new('mesh.select_linked_pick', 'SELECTMOUSE', 'DOUBLE_CLICK', ctrl=True)
+kmi_props_setattr(kmi.properties, 'limit', True)
+kmi_props_setattr(kmi.properties, 'deselect', True)
+
 kmi = km.keymap_items.new('wm.call_menu', 'TAB', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'name', 'VIEW3D_MT_edit_mesh_select_mode')
+
+kmi = km.keymap_items.new('mesh.select_mode', 'ONE', 'PRESS')
+kmi_props_setattr(kmi.properties, 'type', 'VERT')
+kmi = km.keymap_items.new('mesh.select_mode', 'TWO', 'PRESS')
+kmi_props_setattr(kmi.properties, 'type', 'EDGE')
+kmi = km.keymap_items.new('mesh.select_mode', 'THREE', 'PRESS')
+kmi_props_setattr(kmi.properties, 'type', 'FACE')
 
 ## Mesh Visibility Tools
 kmi = km.keymap_items.new('mesh.hide', 'H', 'PRESS')
