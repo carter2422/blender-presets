@@ -37,6 +37,8 @@ kmi = km.keymap_items.new('view3d.rotate', 'MOUSEROTATE', 'ANY')
 kmi = km.keymap_items.new('view3d.move', 'TRACKPADPAN', 'ANY', shift=True)
 kmi = km.keymap_items.new('view3d.zoom', 'TRACKPADZOOM', 'ANY')
 kmi = km.keymap_items.new('view3d.zoom', 'TRACKPADPAN', 'ANY', ctrl=True)
+
+### Numpad navigation
 kmi = km.keymap_items.new('view3d.zoom', 'NUMPAD_PLUS', 'PRESS')
 kmi_props_setattr(kmi.properties, 'delta', 1)
 kmi = km.keymap_items.new('view3d.zoom', 'NUMPAD_MINUS', 'PRESS')
@@ -113,6 +115,7 @@ kmi_props_setattr(kmi.properties, 'type', 'ROLLLEFT')
 kmi = km.keymap_items.new('view3d.view_roll', 'WHEELDOWNMOUSE', 'PRESS', shift=True, ctrl=True)
 kmi_props_setattr(kmi.properties, 'type', 'ROLLTRIGHT')
 kmi = km.keymap_items.new('view3d.viewnumpad', 'NUMPAD_1', 'PRESS', shift=True)
+
 kmi_props_setattr(kmi.properties, 'type', 'FRONT')
 kmi_props_setattr(kmi.properties, 'align_active', True)
 kmi = km.keymap_items.new('view3d.viewnumpad', 'NUMPAD_3', 'PRESS', shift=True)
@@ -130,7 +133,10 @@ kmi_props_setattr(kmi.properties, 'align_active', True)
 kmi = km.keymap_items.new('view3d.viewnumpad', 'NUMPAD_7', 'PRESS', shift=True, ctrl=True)
 kmi_props_setattr(kmi.properties, 'type', 'BOTTOM')
 kmi_props_setattr(kmi.properties, 'align_active', True)
+
 kmi = km.keymap_items.new('view3d.localview', 'NUMPAD_SLASH', 'PRESS')
+
+### NDOF navigation
 kmi = km.keymap_items.new('view3d.ndof_orbit_zoom', 'NDOF_MOTION', 'ANY')
 kmi = km.keymap_items.new('view3d.ndof_orbit', 'NDOF_MOTION', 'ANY', ctrl=True)
 kmi = km.keymap_items.new('view3d.ndof_pan', 'NDOF_MOTION', 'ANY', shift=True)
