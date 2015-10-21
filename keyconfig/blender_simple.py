@@ -833,6 +833,8 @@ kmi = km.keymap_items.new('screen.actionzone', 'LEFTMOUSE', 'PRESS', shift=True)
 kmi_props_setattr(kmi.properties, 'modifier', 1)
 kmi = km.keymap_items.new('screen.actionzone', 'LEFTMOUSE', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'modifier', 2)
+
+## Area editing
 kmi = km.keymap_items.new('screen.area_split', 'NONE', 'ANY')
 kmi = km.keymap_items.new('screen.area_join', 'NONE', 'ANY')
 kmi = km.keymap_items.new('screen.area_dupli', 'NONE', 'ANY', shift=True)
@@ -845,6 +847,7 @@ kmi = km.keymap_items.new('screen.header', 'F9', 'PRESS', alt=True)
 # Map View2D
 km = kc.keymaps.new('View2D', space_type='EMPTY', region_type='WINDOW', modal=False)
 
+## 2D navigation
 kmi = km.keymap_items.new('view2d.scroller_activate', 'LEFTMOUSE', 'PRESS')
 kmi = km.keymap_items.new('view2d.scroller_activate', 'MIDDLEMOUSE', 'PRESS')
 kmi = km.keymap_items.new('view2d.pan', 'MIDDLEMOUSE', 'PRESS')
