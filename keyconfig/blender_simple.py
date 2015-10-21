@@ -23,20 +23,22 @@ kmi = km.keymap_items.new('view3d.toolshelf', 'T', 'PRESS')
 km = kc.keymaps.new('3D View', space_type='VIEW_3D', region_type='WINDOW', modal=False)
 
 ## Navigation
-kmi = km.keymap_items.new('view3d.cursor3d', 'ACTIONMOUSE', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('view3d.rotate', 'MIDDLEMOUSE', 'PRESS')
 kmi = km.keymap_items.new('view3d.move', 'MIDDLEMOUSE', 'PRESS', shift=True)
 kmi = km.keymap_items.new('view3d.zoom', 'MIDDLEMOUSE', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('view3d.dolly', 'MIDDLEMOUSE', 'PRESS', shift=True, ctrl=True)
-kmi = km.keymap_items.new('view3d.view_selected', 'SPACE', 'PRESS')
-kmi_props_setattr(kmi.properties, 'use_all_regions', True)
 
-kmi = km.keymap_items.new('view3d.smoothview', 'TIMER1', 'ANY', any=True)
 kmi = km.keymap_items.new('view3d.rotate', 'TRACKPADPAN', 'ANY')
 kmi = km.keymap_items.new('view3d.rotate', 'MOUSEROTATE', 'ANY')
 kmi = km.keymap_items.new('view3d.move', 'TRACKPADPAN', 'ANY', shift=True)
 kmi = km.keymap_items.new('view3d.zoom', 'TRACKPADZOOM', 'ANY')
 kmi = km.keymap_items.new('view3d.zoom', 'TRACKPADPAN', 'ANY', ctrl=True)
+
+kmi = km.keymap_items.new('view3d.cursor3d', 'ACTIONMOUSE', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('view3d.view_selected', 'SPACE', 'PRESS')
+kmi_props_setattr(kmi.properties, 'use_all_regions', True)
+
+kmi = km.keymap_items.new('view3d.smoothview', 'TIMER1', 'ANY', any=True)
 
 ### Numpad navigation
 kmi = km.keymap_items.new('view3d.zoom', 'NUMPAD_PLUS', 'PRESS')
@@ -178,9 +180,9 @@ kmi_props_setattr(kmi.properties, 'center', False)
 kmi_props_setattr(kmi.properties, 'enumerate', False)
 kmi_props_setattr(kmi.properties, 'object', False)
 kmi = km.keymap_items.new('view3d.select_or_deselect_all', 'SELECTMOUSE', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'extend', False)
+kmi_props_setattr(kmi.properties, 'extend', True)
 kmi_props_setattr(kmi.properties, 'deselect', False)
-kmi_props_setattr(kmi.properties, 'toggle', True)
+kmi_props_setattr(kmi.properties, 'toggle', False)
 kmi_props_setattr(kmi.properties, 'center', False)
 kmi_props_setattr(kmi.properties, 'enumerate', False)
 kmi_props_setattr(kmi.properties, 'object', False)
@@ -232,19 +234,17 @@ kmi = km.keymap_items.new('transform.translate', 'A', 'PRESS')
 kmi = km.keymap_items.new('transform.translate', 'EVT_TWEAK_S', 'ANY')
 kmi = km.keymap_items.new('transform.rotate', 'S', 'PRESS')
 kmi = km.keymap_items.new('transform.resize', 'D', 'PRESS')
-kmi = km.keymap_items.new('transform.bend', 'W', 'PRESS', shift=True)
-kmi = km.keymap_items.new('transform.tosphere', 'S', 'PRESS', shift=True, alt=True)
-kmi = km.keymap_items.new('transform.shear', 'S', 'PRESS', shift=True, ctrl=True, alt=True)
+kmi = km.keymap_items.new('transform.mirror', 'M', 'PRESS', ctrl=True)
+
 kmi = km.keymap_items.new('transform.select_orientation', 'SPACE', 'PRESS', alt=True)
 kmi = km.keymap_items.new('transform.create_orientation', 'SPACE', 'PRESS', ctrl=True, alt=True)
 kmi_props_setattr(kmi.properties, 'use', True)
-kmi = km.keymap_items.new('transform.mirror', 'M', 'PRESS', ctrl=True)
 
 
 # kmi = km.keymap_items.new('view3d.layers', 'ACCENT_GRAVE', 'PRESS')
 # kmi_props_setattr(kmi.properties, 'nr', 0)
 
-
+## Shading
 kmi = km.keymap_items.new('wm.context_toggle_enum', 'Z', 'PRESS')
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.viewport_shade')
 kmi_props_setattr(kmi.properties, 'value_1', 'SOLID')
@@ -259,50 +259,48 @@ kmi_props_setattr(kmi.properties, 'value_1', 'SOLID')
 kmi_props_setattr(kmi.properties, 'value_2', 'RENDERED')
 
 
-kmi = km.keymap_items.new('view3d.clip_border', 'B', 'PRESS', alt=True)
-kmi = km.keymap_items.new('view3d.zoom_border', 'B', 'PRESS', shift=True)
-kmi = km.keymap_items.new('view3d.render_border', 'B', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'camera_only', True)
-kmi = km.keymap_items.new('view3d.render_border', 'B', 'PRESS', ctrl=True)
-kmi_props_setattr(kmi.properties, 'camera_only', False)
-kmi = km.keymap_items.new('view3d.clear_render_border', 'B', 'PRESS', ctrl=True, alt=True)
-kmi = km.keymap_items.new('view3d.camera_to_view', 'NUMPAD_0', 'PRESS', ctrl=True, alt=True)
-kmi = km.keymap_items.new('view3d.object_as_camera', 'NUMPAD_0', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('wm.call_menu', 'S', 'PRESS', shift=True)
 kmi_props_setattr(kmi.properties, 'name', 'VIEW3D_MT_snap')
+
 kmi = km.keymap_items.new('view3d.copybuffer', 'C', 'PRESS', oskey=True)
 kmi = km.keymap_items.new('view3d.pastebuffer', 'V', 'PRESS', oskey=True)
 kmi = km.keymap_items.new('view3d.copybuffer', 'C', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('view3d.pastebuffer', 'V', 'PRESS', ctrl=True)
+
 kmi = km.keymap_items.new('wm.context_set_enum', 'COMMA', 'PRESS')
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
 kmi_props_setattr(kmi.properties, 'value', 'BOUNDING_BOX_CENTER')
+
 kmi = km.keymap_items.new('wm.context_set_enum', 'COMMA', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
 kmi_props_setattr(kmi.properties, 'value', 'MEDIAN_POINT')
+
 kmi = km.keymap_items.new('wm.context_toggle', 'COMMA', 'PRESS', alt=True)
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.use_pivot_point_align')
+
 kmi = km.keymap_items.new('wm.context_toggle', 'SPACE', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.show_manipulator')
+
 kmi = km.keymap_items.new('wm.context_set_enum', 'PERIOD', 'PRESS')
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
 kmi_props_setattr(kmi.properties, 'value', 'CURSOR')
+
 kmi = km.keymap_items.new('wm.context_set_enum', 'PERIOD', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
+
 kmi_props_setattr(kmi.properties, 'value', 'INDIVIDUAL_ORIGINS')
 kmi = km.keymap_items.new('wm.context_set_enum', 'PERIOD', 'PRESS', alt=True)
+
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
 kmi_props_setattr(kmi.properties, 'value', 'ACTIVE_ELEMENT')
 
-
+## Snapping
 kmi = km.keymap_items.new('wm.context_toggle', 'TAB', 'PRESS', shift=True)
 kmi_props_setattr(kmi.properties, 'data_path', 'tool_settings.use_snap')
 kmi = km.keymap_items.new('wm.context_menu_enum', 'TAB', 'PRESS', shift=True, ctrl=True)
 kmi_props_setattr(kmi.properties, 'data_path', 'tool_settings.snap_element')
-kmi = km.keymap_items.new('transform.translate', 'T', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'texture_space', True)
-kmi = km.keymap_items.new('transform.resize', 'T', 'PRESS', shift=True, alt=True)
-kmi_props_setattr(kmi.properties, 'texture_space', True)
+
+## Skin modifier
 kmi = km.keymap_items.new('transform.skin_resize', 'A', 'PRESS', ctrl=True)
 
 
@@ -728,33 +726,37 @@ kmi = km.keymap_items.new('brush.active_index_set', 'S', 'DOUBLE_CLICK')
 kmi_props_setattr(kmi.properties, 'mode', 'sculpt')
 kmi_props_setattr(kmi.properties, 'index', 15)
 
+
 # Map Window
 km = kc.keymaps.new('Window', space_type='EMPTY', region_type='WINDOW', modal=False)
 
-kmi = km.keymap_items.new('wm.window_duplicate', 'W', 'PRESS', ctrl=True, alt=True)
+## File saving, opening, closing
 kmi = km.keymap_items.new('wm.read_homefile', 'N', 'PRESS', oskey=True)
-kmi = km.keymap_items.new('wm.call_menu', 'O', 'PRESS', shift=True, oskey=True)
-kmi_props_setattr(kmi.properties, 'name', 'INFO_MT_file_open_recent')
+
 kmi = km.keymap_items.new('wm.open_mainfile', 'O', 'PRESS', oskey=True)
+kmi = km.keymap_items.new('wm.open_mainfile', 'O', 'PRESS', ctrl=True)
+
+kmi = km.keymap_items.new('wm.save_mainfile', 'S', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('wm.save_as_mainfile', 'S', 'PRESS', shift=True, ctrl=True)
 kmi = km.keymap_items.new('wm.save_mainfile', 'S', 'PRESS', oskey=True)
 kmi = km.keymap_items.new('wm.save_as_mainfile', 'S', 'PRESS', shift=True, oskey=True)
-kmi = km.keymap_items.new('wm.quit_blender', 'Q', 'PRESS', oskey=True)
+
 kmi = km.keymap_items.new('wm.read_homefile', 'N', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('wm.save_homefile', 'U', 'PRESS', ctrl=True)
+
+kmi = km.keymap_items.new('wm.call_menu', 'O', 'PRESS', shift=True, oskey=True)
+kmi_props_setattr(kmi.properties, 'name', 'INFO_MT_file_open_recent')
 kmi = km.keymap_items.new('wm.call_menu', 'O', 'PRESS', shift=True, ctrl=True)
 kmi_props_setattr(kmi.properties, 'name', 'INFO_MT_file_open_recent')
-kmi = km.keymap_items.new('wm.open_mainfile', 'O', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('wm.open_mainfile', 'F1', 'PRESS')
+
 kmi = km.keymap_items.new('wm.link', 'O', 'PRESS', ctrl=True, alt=True)
 kmi = km.keymap_items.new('wm.append', 'F1', 'PRESS', shift=True)
-kmi = km.keymap_items.new('wm.save_mainfile', 'S', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('wm.save_mainfile', 'W', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('wm.save_as_mainfile', 'S', 'PRESS', shift=True, ctrl=True)
-kmi = km.keymap_items.new('wm.save_as_mainfile', 'F2', 'PRESS')
-kmi = km.keymap_items.new('wm.save_as_mainfile', 'S', 'PRESS', ctrl=True, alt=True)
-kmi_props_setattr(kmi.properties, 'copy', True)
-kmi = km.keymap_items.new('wm.window_fullscreen_toggle', 'F11', 'PRESS', alt=True)
+
+kmi = km.keymap_items.new('wm.quit_blender', 'Q', 'PRESS', oskey=True)
 kmi = km.keymap_items.new('wm.quit_blender', 'Q', 'PRESS', ctrl=True)
+
+
+kmi = km.keymap_items.new('wm.window_fullscreen_toggle', 'F11', 'PRESS', alt=True)
 kmi = km.keymap_items.new('wm.redraw_timer', 'T', 'PRESS', ctrl=True, alt=True)
 kmi = km.keymap_items.new('wm.debug_menu', 'D', 'PRESS', ctrl=True, alt=True)
 
@@ -762,39 +764,6 @@ kmi = km.keymap_items.new('wm.search_menu', 'ACCENT_GRAVE', 'PRESS')
 
 kmi = km.keymap_items.new('wm.call_menu', 'NDOF_BUTTON_MENU', 'PRESS')
 kmi_props_setattr(kmi.properties, 'name', 'USERPREF_MT_ndof_settings')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F2', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'LOGIC_EDITOR')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F3', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'NODE_EDITOR')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F4', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'CONSOLE')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F5', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'VIEW_3D')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F6', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'GRAPH_EDITOR')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F7', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'PROPERTIES')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F8', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'SEQUENCE_EDITOR')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F9', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'OUTLINER')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F10', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'IMAGE_EDITOR')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F11', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'TEXT_EDITOR')
-kmi = km.keymap_items.new('wm.context_set_enum', 'F12', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'area.type')
-kmi_props_setattr(kmi.properties, 'value', 'DOPESHEET_EDITOR')
 kmi = km.keymap_items.new('wm.context_scale_float', 'NDOF_BUTTON_PLUS', 'PRESS')
 kmi_props_setattr(kmi.properties, 'data_path', 'user_preferences.inputs.ndof_sensitivity')
 kmi_props_setattr(kmi.properties, 'value', 1.100000023841858)
@@ -809,8 +778,19 @@ kmi_props_setattr(kmi.properties, 'data_path', 'user_preferences.inputs.ndof_sen
 kmi_props_setattr(kmi.properties, 'value', 0.6666666865348816)
 kmi = km.keymap_items.new('info.reports_display_update', 'TIMER_REPORT', 'ANY', any=True)
 
+
 # Map Screen
 km = kc.keymaps.new('Screen', space_type='EMPTY', region_type='WINDOW', modal=False)
+
+kmi = km.keymap_items.new('file.execute', 'RET', 'PRESS')
+kmi = km.keymap_items.new('file.execute', 'NUMPAD_ENTER', 'PRESS')
+kmi = km.keymap_items.new('file.cancel', 'ESC', 'PRESS')
+kmi = km.keymap_items.new('ed.undo', 'Z', 'PRESS', oskey=True)
+kmi = km.keymap_items.new('ed.redo', 'Z', 'PRESS', shift=True, oskey=True)
+kmi = km.keymap_items.new('ed.undo_history', 'Z', 'PRESS', alt=True, oskey=True)
+kmi = km.keymap_items.new('ed.undo', 'Z', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('ed.redo', 'Z', 'PRESS', shift=True, ctrl=True)
+kmi = km.keymap_items.new('ed.undo_history', 'Z', 'PRESS', ctrl=True, alt=True)
 
 kmi = km.keymap_items.new('screen.animation_step', 'TIMER0', 'ANY', any=True)
 kmi = km.keymap_items.new('screen.region_blend', 'TIMERREGION', 'ANY', any=True)
@@ -832,15 +812,7 @@ kmi = km.keymap_items.new('screen.repeat_last', 'R', 'PRESS', shift=True)
 kmi = km.keymap_items.new('screen.region_flip', 'F5', 'PRESS')
 kmi = km.keymap_items.new('screen.redo_last', 'F6', 'PRESS')
 kmi = km.keymap_items.new('script.reload', 'F8', 'PRESS')
-kmi = km.keymap_items.new('file.execute', 'RET', 'PRESS')
-kmi = km.keymap_items.new('file.execute', 'NUMPAD_ENTER', 'PRESS')
-kmi = km.keymap_items.new('file.cancel', 'ESC', 'PRESS')
-kmi = km.keymap_items.new('ed.undo', 'Z', 'PRESS', oskey=True)
-kmi = km.keymap_items.new('ed.redo', 'Z', 'PRESS', shift=True, oskey=True)
-kmi = km.keymap_items.new('ed.undo_history', 'Z', 'PRESS', alt=True, oskey=True)
-kmi = km.keymap_items.new('ed.undo', 'Z', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('ed.redo', 'Z', 'PRESS', shift=True, ctrl=True)
-kmi = km.keymap_items.new('ed.undo_history', 'Z', 'PRESS', ctrl=True, alt=True)
+
 kmi = km.keymap_items.new('render.render', 'F12', 'PRESS')
 kmi_props_setattr(kmi.properties, 'use_viewport', True)
 kmi = km.keymap_items.new('render.render', 'F12', 'PRESS', ctrl=True)
@@ -849,7 +821,7 @@ kmi_props_setattr(kmi.properties, 'use_viewport', True)
 kmi = km.keymap_items.new('render.view_cancel', 'ESC', 'PRESS')
 kmi = km.keymap_items.new('render.view_show', 'F11', 'PRESS')
 kmi = km.keymap_items.new('render.play_rendered_anim', 'F11', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('screen.userpref_show', 'COMMA', 'PRESS', oskey=True)
+
 kmi = km.keymap_items.new('screen.userpref_show', 'U', 'PRESS', ctrl=True, alt=True)
 
 # Map Screen Editing
@@ -4191,6 +4163,7 @@ kmi_props_setattr(kmi.properties, 'extend', False)
 kmi = km.keymap_items.new('action.select_leftright', 'SELECTMOUSE', 'PRESS', shift=True, ctrl=True)
 kmi_props_setattr(kmi.properties, 'mode', 'CHECK')
 kmi_props_setattr(kmi.properties, 'extend', True)
+`
 kmi = km.keymap_items.new('action.select_leftright', 'LEFT_BRACKET', 'PRESS')
 kmi_props_setattr(kmi.properties, 'mode', 'LEFT')
 kmi_props_setattr(kmi.properties, 'extend', False)
@@ -4213,6 +4186,7 @@ kmi = km.keymap_items.new('action.select_column', 'K', 'PRESS', shift=True)
 kmi_props_setattr(kmi.properties, 'mode', 'MARKERS_COLUMN')
 kmi = km.keymap_items.new('action.select_column', 'K', 'PRESS', alt=True)
 kmi_props_setattr(kmi.properties, 'mode', 'MARKERS_BETWEEN')
+
 kmi = km.keymap_items.new('action.select_more', 'NUMPAD_PLUS', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('action.select_less', 'NUMPAD_MINUS', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('action.select_linked', 'L', 'PRESS')
