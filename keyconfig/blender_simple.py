@@ -23,7 +23,7 @@ kmi = km.keymap_items.new('view3d.toolshelf', 'T', 'PRESS')
 km = kc.keymaps.new('3D View', space_type='VIEW_3D', region_type='WINDOW', modal=False)
 
 ## Navigation
-kmi = km.keymap_items.new('view3d.cursor3d', 'RIGHTMOUSE', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('view3d.cursor3d', 'ACTIONMOUSE', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('view3d.rotate', 'MIDDLEMOUSE', 'PRESS')
 kmi = km.keymap_items.new('view3d.move', 'MIDDLEMOUSE', 'PRESS', shift=True)
 kmi = km.keymap_items.new('view3d.zoom', 'MIDDLEMOUSE', 'PRESS', ctrl=True)
