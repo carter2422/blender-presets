@@ -1071,7 +1071,9 @@ kmi = km.keymap_items.new('object.delete', 'DEL', 'PRESS')
 kmi_props_setattr(kmi.properties, 'use_global', False)
 kmi = km.keymap_items.new('object.delete', 'DEL', 'PRESS', shift=True)
 kmi_props_setattr(kmi.properties, 'use_global', True)
-kmi = km.keymap_items.new('wm.call_menu', 'A', 'PRESS', shift=True)
+
+## Object Mode menus
+kmi = km.keymap_items.new('wm.call_menu', 'SPACE', 'PRESS', shift=True)
 kmi_props_setattr(kmi.properties, 'name', 'INFO_MT_add')
 kmi = km.keymap_items.new('object.duplicates_make_real', 'A', 'PRESS', shift=True, ctrl=True)
 kmi = km.keymap_items.new('wm.call_menu', 'A', 'PRESS', ctrl=True)
