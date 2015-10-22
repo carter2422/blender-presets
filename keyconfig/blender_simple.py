@@ -1189,7 +1189,7 @@ kmi = km.keymap_items.new('transform.shrink_fatten', 'S', 'PRESS', alt=True)
 kmi = km.keymap_items.new('transform.vert_slide', 'V', 'PRESS', shift=True)
 
 ## Mesh Add Tools
-kmi = km.keymap_items.new('wm.call_menu', 'A', 'PRESS', shift=True)
+kmi = km.keymap_items.new('wm.call_menu', 'SPACE', 'PRESS', shift=True)
 kmi_props_setattr(kmi.properties, 'name', 'INFO_MT_mesh_add')
 
 kmi = km.keymap_items.new('mesh.inset', 'I', 'PRESS')
