@@ -3425,8 +3425,11 @@ kmi_props_setattr(kmi.properties, 'extend', True)
 kmi = km.keymap_items.new('node.select', 'SELECTMOUSE', 'PRESS', shift=True, ctrl=True, alt=True)
 kmi_props_setattr(kmi.properties, 'extend', True)
 
-kmi = km.keymap_items.new('node.select_all', 'A', 'PRESS')
-kmi_props_setattr(kmi.properties, 'action', 'TOGGLE')
+kmi = km.keymap_items.new('node.select_all', 'A', 'PRESS', shift=True)
+kmi_props_setattr(kmi.properties, 'action', 'SELECT')
+kmi = km.keymap_items.new('node.select_all', 'A', 'PRESS', ctrl=True)
+kmi_props_setattr(kmi.properties, 'action', 'DESELECT')
+
 kmi = km.keymap_items.new('node.select_all', 'I', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'action', 'INVERT')
 kmi = km.keymap_items.new('node.select_linked_to', 'L', 'PRESS', shift=True)
