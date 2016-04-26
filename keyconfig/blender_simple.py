@@ -275,6 +275,15 @@ kmi_props_setattr(kmi.properties, 'data_path', 'space_data.use_pivot_point_align
 kmi = km.keymap_items.new('wm.context_toggle', 'SPACE', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.show_manipulator')
 
+kmi = km.keymap_items.new('view3d.enable_manipulator', 'A', 'PRESS', shift=True)
+kmi.properties.translate = True
+
+kmi = km.keymap_items.new('view3d.enable_manipulator', 'S', 'PRESS', shift=True)
+kmi.properties.rotate = True
+
+kmi = km.keymap_items.new('view3d.enable_manipulator', 'D', 'PRESS', shift=True)
+kmi.properties.scale = True
+
 kmi = km.keymap_items.new('wm.context_set_enum', 'PERIOD', 'PRESS')
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
 kmi_props_setattr(kmi.properties, 'value', 'CURSOR')
