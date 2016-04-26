@@ -1007,11 +1007,12 @@ kmi_props_setattr(kmi.properties, 'data_path', 'tool_settings.use_proportional_e
 kmi = km.keymap_items.new('view3d.game_start', 'P', 'PRESS')
 
 
-## Object Mode Selection
-kmi = km.keymap_items.new('object.select_all', 'A', 'PRESS', shift=True)
+# Object Mode Selection
+kmi = km.keymap_items.new('object.select_all', 'A', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'action', 'SELECT')
-kmi = km.keymap_items.new('object.select_all', 'A', 'PRESS', alt=True)
+kmi = km.keymap_items.new('object.select_all', 'A', 'PRESS', ctrl=True, alt=True)
 kmi_props_setattr(kmi.properties, 'action', 'DESELECT')
+
 
 kmi = km.keymap_items.new('object.select_all', 'I', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'action', 'INVERT')
