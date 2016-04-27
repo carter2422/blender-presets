@@ -13,6 +13,25 @@ def kmi_props_setattr(kmi_props, attr, value):
 wm = bpy.context.window_manager
 kc = wm.keyconfigs.new(os.path.splitext(os.path.basename(__file__))[0])
 
+# Map View2D
+km = kc.keymaps.new('View2D', space_type='EMPTY', region_type='WINDOW', modal=False)
+
+## 2D navigation
+kmi = km.keymap_items.new('view2d.scroller_activate', 'LEFTMOUSE', 'PRESS')
+kmi = km.keymap_items.new('view2d.pan', 'MIDDLEMOUSE', 'PRESS')
+kmi = km.keymap_items.new('view2d.pan', 'MIDDLEMOUSE', 'PRESS', shift=True)
+kmi = km.keymap_items.new('view2d.zoom', 'MIDDLEMOUSE', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('view2d.zoom_in', 'WHEELINMOUSE', 'PRESS')
+kmi = km.keymap_items.new('view2d.zoom_out', 'WHEELOUTMOUSE', 'PRESS')
+kmi = km.keymap_items.new('view2d.zoom_in', 'NUMPAD_PLUS', 'PRESS')
+kmi = km.keymap_items.new('view2d.zoom_out', 'NUMPAD_MINUS', 'PRESS')
+kmi = km.keymap_items.new('view2d.pan', 'TRACKPADPAN', 'ANY')
+kmi = km.keymap_items.new('view2d.zoom', 'TRACKPADPAN', 'ANY', ctrl=True)
+kmi = km.keymap_items.new('view2d.zoom', 'TRACKPADZOOM', 'ANY')
+kmi = km.keymap_items.new('view2d.ndof', 'NDOF_MOTION', 'ANY')
+kmi = km.keymap_items.new('view2d.smoothview', 'TIMER1', 'ANY', any=True)
+
+
 # Map 3D View Generic
 km = kc.keymaps.new('3D View Generic', space_type='VIEW_3D', region_type='WINDOW', modal=False)
 
@@ -27,41 +46,29 @@ kmi = km.keymap_items.new('view3d.rotate', 'MIDDLEMOUSE', 'PRESS')
 kmi = km.keymap_items.new('view3d.move', 'MIDDLEMOUSE', 'PRESS', shift=True)
 kmi = km.keymap_items.new('view3d.zoom', 'MIDDLEMOUSE', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('view3d.dolly', 'MIDDLEMOUSE', 'PRESS', shift=True, ctrl=True)
+kmi = km.keymap_items.new('view3d.rotate', 'MOUSEROTATE', 'ANY')
 
 kmi = km.keymap_items.new('view3d.rotate', 'TRACKPADPAN', 'ANY')
-kmi = km.keymap_items.new('view3d.rotate', 'MOUSEROTATE', 'ANY')
-kmi = km.keymap_items.new('view3d.move', 'TRACKPADPAN', 'ANY', shift=True)
 kmi = km.keymap_items.new('view3d.zoom', 'TRACKPADZOOM', 'ANY')
 kmi = km.keymap_items.new('view3d.zoom', 'TRACKPADPAN', 'ANY', ctrl=True)
+kmi = km.keymap_items.new('view3d.move', 'TRACKPADPAN', 'ANY', shift=True)
 
-kmi = km.keymap_items.new('view3d.cursor3d', 'ACTIONMOUSE', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('view3d.view_selected', 'SPACE', 'PRESS')
 kmi_props_setattr(kmi.properties, 'use_all_regions', True)
 
-kmi = km.keymap_items.new('view3d.smoothview', 'TIMER1', 'ANY', any=True)
 
-### Viewport navigation
-kmi = km.keymap_items.new('view3d.zoom', 'NUMPAD_PLUS', 'PRESS')
+kmi = km.keymap_items.new('view3d.zoom', 'EQUAL', 'PRESS')
 kmi_props_setattr(kmi.properties, 'delta', 1)
-kmi = km.keymap_items.new('view3d.zoom', 'NUMPAD_MINUS', 'PRESS')
-kmi_props_setattr(kmi.properties, 'delta', -1)
-kmi = km.keymap_items.new('view3d.zoom', 'EQUAL', 'PRESS', ctrl=True)
-kmi_props_setattr(kmi.properties, 'delta', 1)
-kmi = km.keymap_items.new('view3d.zoom', 'MINUS', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('view3d.zoom', 'MINUS', 'PRESS')
 kmi_props_setattr(kmi.properties, 'delta', -1)
 kmi = km.keymap_items.new('view3d.zoom', 'WHEELINMOUSE', 'PRESS')
 kmi_props_setattr(kmi.properties, 'delta', 1)
 kmi = km.keymap_items.new('view3d.zoom', 'WHEELOUTMOUSE', 'PRESS')
 kmi_props_setattr(kmi.properties, 'delta', -1)
-kmi = km.keymap_items.new('view3d.dolly', 'NUMPAD_PLUS', 'PRESS', shift=True)
+kmi = km.keymap_items.new('view3d.dolly', 'EQUAL', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'delta', 1)
-kmi = km.keymap_items.new('view3d.dolly', 'NUMPAD_MINUS', 'PRESS', shift=True)
+kmi = km.keymap_items.new('view3d.dolly', 'MINUS', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'delta', -1)
-kmi = km.keymap_items.new('view3d.dolly', 'EQUAL', 'PRESS', shift=True, ctrl=True)
-kmi_props_setattr(kmi.properties, 'delta', 1)
-kmi = km.keymap_items.new('view3d.dolly', 'MINUS', 'PRESS', shift=True, ctrl=True)
-kmi_props_setattr(kmi.properties, 'delta', -1)
-
 
 kmi = km.keymap_items.new('view3d.viewnumpad', 'ZERO', 'PRESS')
 kmi_props_setattr(kmi.properties, 'type', 'CAMERA')
@@ -81,69 +88,7 @@ kmi_props_setattr(kmi.properties, 'type', 'LEFT')
 
 kmi = km.keymap_items.new('view3d.view_persportho', 'FIVE', 'PRESS')
 
-# kmi = km.keymap_items.new('view3d.view_orbit', 'FOUR', 'PRESS')
-# kmi_props_setattr(kmi.properties, 'type', 'ORBITLEFT')
-# kmi = km.keymap_items.new('view3d.view_orbit', 'SIX', 'PRESS')
-# kmi_props_setattr(kmi.properties, 'type', 'ORBITRIGHT')
-# kmi = km.keymap_items.new('view3d.viewnumpad', 'THREE', 'PRESS')
-# kmi_props_setattr(kmi.properties, 'type', 'ORBITDOWN')
-# kmi = km.keymap_items.new('view3d.view_orbit', 'EIGHT', 'PRESS')
-# kmi_props_setattr(kmi.properties, 'type', 'ORBITUP')
-# kmi = km.keymap_items.new('view3d.view_orbit', 'WHEELUPMOUSE', 'PRESS', ctrl=True, alt=True)
-# kmi_props_setattr(kmi.properties, 'type', 'ORBITLEFT')
-# kmi = km.keymap_items.new('view3d.view_orbit', 'WHEELDOWNMOUSE', 'PRESS', ctrl=True, alt=True)
-# kmi_props_setattr(kmi.properties, 'type', 'ORBITRIGHT')
-# kmi = km.keymap_items.new('view3d.view_orbit', 'WHEELUPMOUSE', 'PRESS', shift=True, alt=True)
-# kmi_props_setattr(kmi.properties, 'type', 'ORBITUP')
-# kmi = km.keymap_items.new('view3d.view_orbit', 'WHEELDOWNMOUSE', 'PRESS', shift=True, alt=True)
-# kmi_props_setattr(kmi.properties, 'type', 'ORBITDOWN')
-
-# kmi = km.keymap_items.new('view3d.view_pan', 'TWO', 'PRESS', ctrl=True)
-# kmi_props_setattr(kmi.properties, 'type', 'PANDOWN')
-# kmi = km.keymap_items.new('view3d.view_pan', 'FOUR', 'PRESS', ctrl=True)
-# kmi_props_setattr(kmi.properties, 'type', 'PANLEFT')
-# kmi = km.keymap_items.new('view3d.view_pan', 'SIX', 'PRESS', ctrl=True)
-# kmi_props_setattr(kmi.properties, 'type', 'PANRIGHT')
-# kmi = km.keymap_items.new('view3d.view_pan', 'EIGHT', 'PRESS', ctrl=True)
-# kmi_props_setattr(kmi.properties, 'type', 'PANUP')
-
-# kmi = km.keymap_items.new('view3d.view_pan', 'WHEELUPMOUSE', 'PRESS', ctrl=True)
-# kmi_props_setattr(kmi.properties, 'type', 'PANRIGHT')
-# kmi = km.keymap_items.new('view3d.view_pan', 'WHEELDOWNMOUSE', 'PRESS', ctrl=True)
-# kmi_props_setattr(kmi.properties, 'type', 'PANLEFT')
-# kmi = km.keymap_items.new('view3d.view_pan', 'WHEELUPMOUSE', 'PRESS', shift=True)
-# kmi_props_setattr(kmi.properties, 'type', 'PANUP')
-# kmi = km.keymap_items.new('view3d.view_pan', 'WHEELDOWNMOUSE', 'PRESS', shift=True)
-# kmi_props_setattr(kmi.properties, 'type', 'PANDOWN')
-
-
-# kmi = km.keymap_items.new('view3d.view_roll', 'WHEELUPMOUSE', 'PRESS', shift=True, ctrl=True)
-# kmi_props_setattr(kmi.properties, 'type', 'ROLLLEFT')
-# kmi = km.keymap_items.new('view3d.view_roll', 'WHEELDOWNMOUSE', 'PRESS', shift=True, ctrl=True)
-# kmi_props_setattr(kmi.properties, 'type', 'ROLLTRIGHT')
-# kmi = km.keymap_items.new('view3d.viewnumpad', 'NUMPAD_1', 'PRESS', shift=True)
-# kmi = km.keymap_items.new('view3d.view_roll', 'FOUR', 'PRESS', shift=True)
-# kmi_props_setattr(kmi.properties, 'type', 'ROLLLEFT')
-# kmi = km.keymap_items.new('view3d.view_roll', 'SIX', 'PRESS', shift=True)
-# kmi_props_setattr(kmi.properties, 'type', 'ROLLTRIGHT')
-
-kmi_props_setattr(kmi.properties, 'type', 'FRONT')
-kmi_props_setattr(kmi.properties, 'align_active', True)
-kmi = km.keymap_items.new('view3d.viewnumpad', 'THREE', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'type', 'RIGHT')
-kmi_props_setattr(kmi.properties, 'align_active', True)
-kmi = km.keymap_items.new('view3d.viewnumpad', 'SEVEN', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'type', 'TOP')
-kmi_props_setattr(kmi.properties, 'align_active', True)
-kmi = km.keymap_items.new('view3d.viewnumpad', 'ONE', 'PRESS', shift=True, ctrl=True)
-kmi_props_setattr(kmi.properties, 'type', 'BACK')
-kmi_props_setattr(kmi.properties, 'align_active', True)
-kmi = km.keymap_items.new('view3d.viewnumpad', 'THREE', 'PRESS', shift=True, ctrl=True)
-kmi_props_setattr(kmi.properties, 'type', 'LEFT')
-kmi_props_setattr(kmi.properties, 'align_active', True)
-kmi = km.keymap_items.new('view3d.viewnumpad', 'SEVEN', 'PRESS', shift=True, ctrl=True)
-kmi_props_setattr(kmi.properties, 'type', 'BOTTOM')
-kmi_props_setattr(kmi.properties, 'align_active', True)
+kmi = km.keymap_items.new('view3d.smoothview', 'TIMER1', 'ANY', any=True)
 
 kmi = km.keymap_items.new('view3d.localview', 'BACK_SLASH', 'PRESS')
 
@@ -237,15 +182,6 @@ kmi = km.keymap_items.new('transform.translate', 'A', 'PRESS')
 kmi = km.keymap_items.new('transform.translate', 'EVT_TWEAK_S', 'ANY')
 kmi = km.keymap_items.new('transform.rotate', 'S', 'PRESS')
 kmi = km.keymap_items.new('transform.resize', 'D', 'PRESS')
-kmi = km.keymap_items.new('transform.mirror', 'M', 'PRESS', ctrl=True)
-
-kmi = km.keymap_items.new('transform.select_orientation', 'SPACE', 'PRESS', alt=True)
-kmi = km.keymap_items.new('transform.create_orientation', 'SPACE', 'PRESS', ctrl=True, alt=True)
-kmi_props_setattr(kmi.properties, 'use', True)
-
-
-# kmi = km.keymap_items.new('view3d.layers', 'ACCENT_GRAVE', 'PRESS')
-# kmi_props_setattr(kmi.properties, 'nr', 0)
 
 ## Shading
 kmi = km.keymap_items.new('wm.context_toggle_enum', 'Z', 'PRESS')
@@ -265,46 +201,19 @@ kmi_props_setattr(kmi.properties, 'value_2', 'RENDERED')
 # kmi = km.keymap_items.new('wm.call_menu', 'S', 'PRESS', shift=True)
 # kmi_props_setattr(kmi.properties, 'name', 'VIEW3D_MT_snap')
 
-kmi = km.keymap_items.new('view3d.copybuffer', 'C', 'PRESS', oskey=True)
-kmi = km.keymap_items.new('view3d.pastebuffer', 'V', 'PRESS', oskey=True)
-kmi = km.keymap_items.new('view3d.copybuffer', 'C', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('view3d.pastebuffer', 'V', 'PRESS', ctrl=True)
-
-kmi = km.keymap_items.new('wm.context_set_enum', 'COMMA', 'PRESS')
-kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
-kmi_props_setattr(kmi.properties, 'value', 'BOUNDING_BOX_CENTER')
-
-kmi = km.keymap_items.new('wm.context_set_enum', 'COMMA', 'PRESS', ctrl=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
-kmi_props_setattr(kmi.properties, 'value', 'MEDIAN_POINT')
-
-kmi = km.keymap_items.new('wm.context_toggle', 'COMMA', 'PRESS', alt=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'space_data.use_pivot_point_align')
 
 kmi = km.keymap_items.new('wm.context_toggle', 'SPACE', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'data_path', 'space_data.show_manipulator')
 
-kmi = km.keymap_items.new('view3d.enable_manipulator', 'A', 'PRESS', shift=True)
+kmi = km.keymap_items.new('view3d.enable_manipulator', 'A', 'PRESS', ctrl=True)
 kmi.properties.translate = True
 
-kmi = km.keymap_items.new('view3d.enable_manipulator', 'S', 'PRESS', shift=True)
+kmi = km.keymap_items.new('view3d.enable_manipulator', 'S', 'PRESS', ctrl=True)
 kmi.properties.rotate = True
 
-kmi = km.keymap_items.new('view3d.enable_manipulator', 'D', 'PRESS', shift=True)
+kmi = km.keymap_items.new('view3d.enable_manipulator', 'D', 'PRESS', ctrl=True)
 kmi.properties.scale = True
 
-kmi = km.keymap_items.new('wm.context_set_enum', 'PERIOD', 'PRESS')
-kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
-kmi_props_setattr(kmi.properties, 'value', 'CURSOR')
-
-kmi = km.keymap_items.new('wm.context_set_enum', 'PERIOD', 'PRESS', ctrl=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
-
-kmi_props_setattr(kmi.properties, 'value', 'INDIVIDUAL_ORIGINS')
-kmi = km.keymap_items.new('wm.context_set_enum', 'PERIOD', 'PRESS', alt=True)
-
-kmi_props_setattr(kmi.properties, 'data_path', 'space_data.pivot_point')
-kmi_props_setattr(kmi.properties, 'value', 'ACTIVE_ELEMENT')
 
 ## Snapping
 kmi = km.keymap_items.new('wm.context_toggle', 'TAB', 'PRESS', shift=True)
@@ -312,9 +221,14 @@ kmi_props_setattr(kmi.properties, 'data_path', 'tool_settings.use_snap')
 kmi = km.keymap_items.new('wm.context_menu_enum', 'TAB', 'PRESS', shift=True, ctrl=True)
 kmi_props_setattr(kmi.properties, 'data_path', 'tool_settings.snap_element')
 
-## Skin modifier
-kmi = km.keymap_items.new('transform.skin_resize', 'A', 'PRESS', ctrl=True)
+## Data
+kmi = km.keymap_items.new('view3d.copybuffer', 'C', 'PRESS', oskey=True)
+kmi = km.keymap_items.new('view3d.pastebuffer', 'V', 'PRESS', oskey=True)
+kmi = km.keymap_items.new('view3d.copybuffer', 'C', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('view3d.pastebuffer', 'V', 'PRESS', ctrl=True)
 
+## Misc
+kmi = km.keymap_items.new('view3d.cursor3d', 'ACTIONMOUSE', 'PRESS', ctrl=True)
 
 # Map Sculpt
 km = kc.keymaps.new('Sculpt', space_type='EMPTY', region_type='WINDOW', modal=False)
@@ -739,14 +653,9 @@ kmi = km.keymap_items.new('screen.screen_full_area', 'SPACE', 'PRESS', shift=Tru
 kmi = km.keymap_items.new('screen.screen_full_area', 'F10', 'PRESS', alt=True)
 kmi_props_setattr(kmi.properties, 'use_hide_panels', True)
 
-kmi = km.keymap_items.new('screen.screenshot', 'F3', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('screen.screencast', 'F3', 'PRESS', alt=True)
-kmi = km.keymap_items.new('screen.region_quadview', 'Q', 'PRESS', ctrl=True, alt=True)
 kmi = km.keymap_items.new('screen.repeat_history', 'F3', 'PRESS')
 kmi = km.keymap_items.new('screen.repeat_last', 'R', 'PRESS', shift=True)
-kmi = km.keymap_items.new('screen.region_flip', 'F5', 'PRESS')
 kmi = km.keymap_items.new('screen.redo_last', 'F6', 'PRESS')
-kmi = km.keymap_items.new('script.reload', 'F8', 'PRESS')
 
 kmi = km.keymap_items.new('render.render', 'F12', 'PRESS')
 kmi_props_setattr(kmi.properties, 'use_viewport', True)
@@ -778,33 +687,6 @@ kmi = km.keymap_items.new('screen.area_move', 'LEFTMOUSE', 'PRESS')
 kmi = km.keymap_items.new('screen.area_options', 'RIGHTMOUSE', 'PRESS')
 kmi = km.keymap_items.new('screen.header', 'F9', 'PRESS', alt=True)
 
-# Map View2D
-km = kc.keymaps.new('View2D', space_type='EMPTY', region_type='WINDOW', modal=False)
-
-## 2D navigation
-kmi = km.keymap_items.new('view2d.scroller_activate', 'LEFTMOUSE', 'PRESS')
-kmi = km.keymap_items.new('view2d.scroller_activate', 'MIDDLEMOUSE', 'PRESS')
-kmi = km.keymap_items.new('view2d.pan', 'MIDDLEMOUSE', 'PRESS')
-kmi = km.keymap_items.new('view2d.pan', 'MIDDLEMOUSE', 'PRESS', shift=True)
-kmi = km.keymap_items.new('view2d.pan', 'TRACKPADPAN', 'ANY')
-kmi = km.keymap_items.new('view2d.scroll_right', 'WHEELDOWNMOUSE', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('view2d.scroll_left', 'WHEELUPMOUSE', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('view2d.scroll_down', 'WHEELDOWNMOUSE', 'PRESS', shift=True)
-kmi = km.keymap_items.new('view2d.scroll_up', 'WHEELUPMOUSE', 'PRESS', shift=True)
-kmi = km.keymap_items.new('view2d.ndof', 'NDOF_MOTION', 'ANY')
-kmi = km.keymap_items.new('view2d.zoom_out', 'WHEELOUTMOUSE', 'PRESS')
-kmi = km.keymap_items.new('view2d.zoom_in', 'WHEELINMOUSE', 'PRESS')
-kmi = km.keymap_items.new('view2d.zoom_out', 'NUMPAD_MINUS', 'PRESS')
-kmi = km.keymap_items.new('view2d.zoom_in', 'NUMPAD_PLUS', 'PRESS')
-kmi = km.keymap_items.new('view2d.zoom', 'TRACKPADPAN', 'ANY', ctrl=True)
-kmi = km.keymap_items.new('view2d.smoothview', 'TIMER1', 'ANY', any=True)
-kmi = km.keymap_items.new('view2d.scroll_down', 'WHEELDOWNMOUSE', 'PRESS')
-kmi = km.keymap_items.new('view2d.scroll_up', 'WHEELUPMOUSE', 'PRESS')
-kmi = km.keymap_items.new('view2d.scroll_right', 'WHEELDOWNMOUSE', 'PRESS')
-kmi = km.keymap_items.new('view2d.scroll_left', 'WHEELUPMOUSE', 'PRESS')
-kmi = km.keymap_items.new('view2d.zoom', 'MIDDLEMOUSE', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('view2d.zoom', 'TRACKPADZOOM', 'ANY')
-kmi = km.keymap_items.new('view2d.zoom_border', 'B', 'PRESS', shift=True)
 
 # Map Frames
 km = kc.keymaps.new('Frames', space_type='EMPTY', region_type='WINDOW', modal=False)
@@ -973,7 +855,7 @@ kmi_props_setattr(kmi.properties, 'extend', False)
 kmi = km.keymap_items.new('pose.select_hierarchy', 'RIGHT_BRACKET', 'PRESS', shift=True)
 kmi_props_setattr(kmi.properties, 'direction', 'CHILD')
 kmi_props_setattr(kmi.properties, 'extend', True)
-kmi = km.keymap_items.new('pose.select_linked', 'L', 'PRESS')
+kmi = km.keymap_items.new('pose.select_linked', 'LEFTMOUSE', 'DOUBLE_CLICK')
 kmi = km.keymap_items.new('pose.select_grouped', 'G', 'PRESS', shift=True)
 kmi = km.keymap_items.new('pose.select_mirror', 'F', 'PRESS', shift=True)
 kmi = km.keymap_items.new('pose.constraint_add_with_targets', 'C', 'PRESS', shift=True, ctrl=True)
@@ -1009,12 +891,6 @@ kmi_props_setattr(kmi.properties, 'name', 'VIEW3D_MT_pose_specials')
 # Map Object Mode
 km = kc.keymaps.new('Object Mode', space_type='EMPTY', region_type='WINDOW', modal=False)
 
-kmi = km.keymap_items.new('wm.context_cycle_enum', 'O', 'PRESS', shift=True)
-kmi_props_setattr(kmi.properties, 'data_path', 'tool_settings.proportional_edit_falloff')
-kmi = km.keymap_items.new('wm.context_toggle', 'O', 'PRESS')
-kmi_props_setattr(kmi.properties, 'data_path', 'tool_settings.use_proportional_edit_objects')
-kmi = km.keymap_items.new('view3d.game_start', 'P', 'PRESS')
-
 
 # Object Mode Selection
 kmi = km.keymap_items.new('object.select_all', 'A', 'PRESS', ctrl=True)
@@ -1045,11 +921,9 @@ kmi = km.keymap_items.new('object.parent_no_inverse_set', 'P', 'PRESS', shift=Tr
 kmi = km.keymap_items.new('object.parent_clear', 'P', 'PRESS', alt=True)
 kmi = km.keymap_items.new('object.track_set', 'T', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('object.track_clear', 'T', 'PRESS', alt=True)
-kmi = km.keymap_items.new('object.constraint_add_with_targets', 'C', 'PRESS', shift=True, ctrl=True)
-kmi = km.keymap_items.new('object.constraints_clear', 'C', 'PRESS', ctrl=True, alt=True)
-kmi = km.keymap_items.new('object.location_clear', 'G', 'PRESS', alt=True)
-kmi = km.keymap_items.new('object.rotation_clear', 'R', 'PRESS', alt=True)
-kmi = km.keymap_items.new('object.scale_clear', 'S', 'PRESS', alt=True)
+kmi = km.keymap_items.new('object.location_clear', 'A', 'PRESS', alt=True)
+kmi = km.keymap_items.new('object.rotation_clear', 'S', 'PRESS', alt=True)
+kmi = km.keymap_items.new('object.scale_clear', 'D', 'PRESS', alt=True)
 kmi = km.keymap_items.new('object.origin_clear', 'O', 'PRESS', alt=True)
 kmi = km.keymap_items.new('object.hide_view_clear', 'H', 'PRESS', alt=True)
 kmi = km.keymap_items.new('object.hide_view_set', 'H', 'PRESS')
@@ -1132,16 +1006,9 @@ kmi_props_setattr(kmi.properties, 'action', 'DESELECT')
 kmi = km.keymap_items.new('mesh.select_all', 'I', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'action', 'INVERT')
 
-kmi = km.keymap_items.new('mesh.select_more', 'NUMPAD_PLUS', 'PRESS', ctrl=True)
-kmi = km.keymap_items.new('mesh.select_less', 'NUMPAD_MINUS', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('mesh.select_more', 'EQUAL', 'PRESS', shift=True)
+kmi = km.keymap_items.new('mesh.select_less', 'MINUS', 'PRESS', shift=True)
 
-# kmi = km.keymap_items.new('mesh.select_non_manifold', 'M', 'PRESS', shift=True, ctrl=True, alt=True)
-# kmi = km.keymap_items.new('mesh.select_linked', 'L', 'PRESS', ctrl=True)
-# kmi = km.keymap_items.new('mesh.select_linked_pick', 'L', 'PRESS')
-# kmi_props_setattr(kmi.properties, 'deselect', False)
-# kmi = km.keymap_items.new('mesh.select_linked_pick', 'L', 'PRESS', shift=True)
-# kmi_props_setattr(kmi.properties, 'deselect', True)
-# kmi = km.keymap_items.new('mesh.faces_select_linked_flat', 'F', 'PRESS', shift=True, ctrl=True, alt=True)
 
 kmi = km.keymap_items.new('mesh.select_linked_pick', 'SELECTMOUSE', 'DOUBLE_CLICK')
 kmi_props_setattr(kmi.properties, 'limit', True)
@@ -1156,19 +1023,19 @@ kmi_props_setattr(kmi.properties, 'deselect', True)
 kmi = km.keymap_items.new('wm.call_menu', 'TAB', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'name', 'VIEW3D_MT_edit_mesh_select_mode')
 
-kmi = km.keymap_items.new('mesh.select_mode', 'ONE', 'PRESS')
+kmi = km.keymap_items.new('mesh.select_mode', 'ONE', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'type', 'VERT')
-kmi = km.keymap_items.new('mesh.select_mode', 'ONE', 'PRESS', shift=True)
+kmi = km.keymap_items.new('mesh.select_mode', 'ONE', 'PRESS', ctrl=True, shift=True)
 kmi_props_setattr(kmi.properties, 'type', 'VERT')
 kmi_props_setattr(kmi.properties, 'use_extend', True )
-kmi = km.keymap_items.new('mesh.select_mode', 'TWO', 'PRESS')
+kmi = km.keymap_items.new('mesh.select_mode', 'TWO', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'type', 'EDGE')
-kmi = km.keymap_items.new('mesh.select_mode', 'TWO', 'PRESS', shift=True)
+kmi = km.keymap_items.new('mesh.select_mode', 'TWO', 'PRESS', ctrl=True, shift=True)
 kmi_props_setattr(kmi.properties, 'type', 'EDGE')
 kmi_props_setattr(kmi.properties, 'use_extend', True )
-kmi = km.keymap_items.new('mesh.select_mode', 'THREE', 'PRESS')
+kmi = km.keymap_items.new('mesh.select_mode', 'THREE', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'type', 'FACE')
-kmi = km.keymap_items.new('mesh.select_mode', 'THREE', 'PRESS', shift=True)
+kmi = km.keymap_items.new('mesh.select_mode', 'THREE', 'PRESS', ctrl=True, shift=True)
 kmi_props_setattr(kmi.properties, 'type', 'FACE')
 kmi_props_setattr(kmi.properties, 'use_extend', True )
 
@@ -1180,9 +1047,8 @@ kmi_props_setattr(kmi.properties, 'unselected', True)
 kmi = km.keymap_items.new('mesh.reveal', 'H', 'PRESS', alt=True)
 
 ## Mesh Transform Tools
-kmi = km.keymap_items.new('transform.edge_crease', 'E', 'PRESS', shift=True)
-kmi = km.keymap_items.new('transform.shrink_fatten', 'S', 'PRESS', alt=True)
 kmi = km.keymap_items.new('transform.vert_slide', 'V', 'PRESS', shift=True)
+kmi = km.keymap_items.new('transform.edge_slide', 'C', 'PRESS', shift=True)
 
 ## Mesh Add Tools
 kmi = km.keymap_items.new('wm.call_menu', 'SPACE', 'PRESS', shift=True)
@@ -1190,17 +1056,15 @@ kmi_props_setattr(kmi.properties, 'name', 'INFO_MT_mesh_add')
 
 kmi = km.keymap_items.new('mesh.inset', 'I', 'PRESS')
 kmi = km.keymap_items.new('mesh.poke', 'P', 'PRESS', alt=True)
-kmi = km.keymap_items.new('mesh.bevel', 'B', 'PRESS', ctrl=True)
+kmi = km.keymap_items.new('mesh.bevel', 'B', 'PRESS', shift=True)
 kmi_props_setattr(kmi.properties, 'vertex_only', False)
-kmi = km.keymap_items.new('mesh.bevel', 'B', 'PRESS', shift=True, ctrl=True)
+kmi = km.keymap_items.new('mesh.bevel', 'B', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'vertex_only', True)
 kmi = km.keymap_items.new('mesh.loopcut_slide', 'R', 'PRESS', ctrl=True)
 kmi = km.keymap_items.new('view3d.edit_mesh_extrude_move_normal', 'E', 'PRESS')
 kmi = km.keymap_items.new('wm.call_menu', 'E', 'PRESS', alt=True)
 kmi_props_setattr(kmi.properties, 'name', 'VIEW3D_MT_edit_mesh_extrude')
-kmi = km.keymap_items.new('mesh.spin', 'R', 'PRESS', alt=True)
 kmi = km.keymap_items.new('mesh.fill', 'F', 'PRESS', alt=True)
-kmi = km.keymap_items.new('mesh.beautify_fill', 'F', 'PRESS', shift=True, alt=True)
 kmi = km.keymap_items.new('mesh.quads_convert_to_tris', 'T', 'PRESS', ctrl=True)
 kmi_props_setattr(kmi.properties, 'quad_method', 'BEAUTY')
 kmi_props_setattr(kmi.properties, 'ngon_method', 'BEAUTY')
@@ -3302,6 +3166,7 @@ kmi_props_setattr(kmi.properties, 'reverse', True)
 # Map Image
 km = kc.keymaps.new('Image', space_type='IMAGE_EDITOR', region_type='WINDOW', modal=False)
 
+## Image Navigation
 kmi = km.keymap_items.new('image.view_all', 'HOME', 'PRESS')
 kmi = km.keymap_items.new('image.view_all', 'F', 'PRESS')
 kmi_props_setattr(kmi.properties, 'fit_view', True)
@@ -3338,6 +3203,8 @@ kmi = km.keymap_items.new('image.view_zoom_ratio', 'NUMPAD_4', 'PRESS')
 kmi_props_setattr(kmi.properties, 'ratio', 0.25)
 kmi = km.keymap_items.new('image.view_zoom_ratio', 'NUMPAD_8', 'PRESS')
 kmi_props_setattr(kmi.properties, 'ratio', 0.125)
+
+
 kmi = km.keymap_items.new('image.change_frame', 'LEFTMOUSE', 'PRESS')
 kmi = km.keymap_items.new('image.sample', 'ACTIONMOUSE', 'PRESS')
 kmi = km.keymap_items.new('image.curves_point_set', 'ACTIONMOUSE', 'PRESS', ctrl=True)
